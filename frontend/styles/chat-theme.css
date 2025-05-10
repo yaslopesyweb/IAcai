@@ -1,0 +1,58 @@
+@import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700&display=swap');
+
+:root {
+    --apple-green: #7a9a3a;         /* Bolha IA */
+    --dun: #e8dcc4;                 /* Fundo geral e mensagens IA */
+    --black-olive: #2f3523;         /* Fundo da tela */
+    --khaki: #d3bfa4;               /* Bolha do usuário */
+    --dark-moss-green: #5c6e1f;     /* Texto do usuário e botão */
+}
+
+body {
+    background-color: var(--black-olive);
+    font-family: 'Onest', sans-serif;
+}
+
+.chat-container {
+    background-color: var(--dun);
+}
+
+.header {
+    background-color: var(--apple-green);
+    color: var(--dun);
+    font-weight: bold;
+}
+
+.custom-message-list::part(message-user) {
+    background-color: var(--khaki);
+    color: var(--dark-moss-green);
+    border-radius: 18px 18px 0 18px;
+    margin-left: auto;
+    border: 1px solid var(--dun);
+    padding: 0.75rem 1rem;
+    font-family: 'Onest', sans-serif;
+}
+
+.custom-message-list::part(message-system) {
+    background-color: var(--apple-green);
+    color: var(--dun);
+    border-radius: 18px 18px 18px 0;
+    margin-right: auto;
+    padding: 0.75rem 1rem;
+    font-family: 'Onest', sans-serif;
+}
+
+.input-area {
+    background-color: var(--khaki);
+}
+
+.input-area input {
+    background-color: var(--dun);
+    color: var(--black-olive);
+}
+
+.input-area button {
+    background-color: var(--dark-moss-green);
+    color: white;
+    font-family: 'Onest', sans-serif;
+}
