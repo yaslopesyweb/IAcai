@@ -1,5 +1,7 @@
 package br.com.senac.ia;
 
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.InMemoryChatMemory;
@@ -8,7 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class IaService {
 
-    final ChatClient chatClient;
+    private final ChatClient chatClient;
+    private final Parser markdownParser = Parser.builder().build();
+    private final HtmlRenderer htmlRenderer = HtmlRenderer.builder().build();
 
     public IaService(ChatClient.Builder chatClientBuilder) {
         this.chatClient = chatClientBuilder
@@ -33,11 +37,13 @@ Se não souber responder, diga que não sabe.
                 .build();
     }
 
-    public String sentToAi(String message){
-        return chatClient
+    public String sentToAi(String message) {
+        String markdown = chatClient
                 .prompt()
                 .user(message)
                 .call()
                 .content();
+
+        return htmlRenderer.render(markdownParser.parse(markdown));
     }
 }

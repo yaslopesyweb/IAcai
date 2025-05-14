@@ -19,6 +19,8 @@ target/
 .env.local
 .env.*.local
 /node_modules
+/frontend/generated/
+/src/main/bundles/
 # Não ignorar o arquivo de exemplo
 !.env.example
 

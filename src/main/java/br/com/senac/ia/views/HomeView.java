@@ -93,7 +93,10 @@ public class HomeView extends VerticalLayout {
 
     private void addChatMessage(String text, boolean isUser) {
         Div messageBubble = new Div();
-        messageBubble.setText(text);
+
+        // Usa innerHTML para renderizar Markdown convertido em HTML
+        messageBubble.getElement().setProperty("innerHTML", text);
+
         messageBubble.addClassName(isUser ? "v-user-bubble" : "v-ia-bubble");
         chatLayout.add(messageBubble);
     }
