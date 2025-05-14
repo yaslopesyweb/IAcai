@@ -1,58 +1,106 @@
 @import url('https://fonts.googleapis.com/css2?family=Onest:wght@400;600;700&display=swap');
 
 :root {
-    --apple-green: #7a9a3a;         /* Bolha IA */
-    --dun: #e8dcc4;                 /* Fundo geral e mensagens IA */
-    --black-olive: #2f3523;         /* Fundo da tela */
-    --khaki: #d3bfa4;               /* Bolha do usuário */
-    --dark-moss-green: #5c6e1f;     /* Texto do usuário e botão */
+    --apple-green: #7a9a3a;         /* Verde Apple */
+    --dun: #e8dcc4;                 /* Bege Claro */
+    --black-olive: #2f3523;         /* Verde Escuro */
+    --khaki: #d3bfa4;               /* Caqui */
+    --dark-moss-green: #5c6e1f;     /* Verde Musgo Escuro */
 }
 
 body {
-    background-color: var(--black-olive);
+    background-color: var(--dun);
     font-family: 'Onest', sans-serif;
+    margin: 0;
 }
 
-.chat-container {
-    background-color: var(--dun);
-}
 
 .header {
     background-color: var(--apple-green);
     color: var(--dun);
     font-weight: bold;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    padding: 1rem;
 }
 
-.custom-message-list::part(message-user) {
+
+.chat-scroller,
+vaadin-scroller {
+    background-color: var(--dun);
+    padding: 1rem;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
+}
+
+
+.input-bar {
     background-color: var(--khaki);
-    color: var(--dark-moss-green);
-    border-radius: 18px 18px 0 18px;
-    margin-left: auto;
-    border: 1px solid var(--dun);
-    padding: 0.75rem 1rem;
-    font-family: 'Onest', sans-serif;
+    padding: 1rem;
+    border-top: 2px solid #ccc;
+    display: flex;
+    align-items: flex-end;
+    gap: 0.5rem;
+    border-bottom-left-radius: 16px;
+    border-bottom-right-radius: 16px;
 }
 
-.custom-message-list::part(message-system) {
-    background-color: var(--apple-green);
-    color: var(--dun);
-    border-radius: 18px 18px 18px 0;
-    margin-right: auto;
-    padding: 0.75rem 1rem;
-    font-family: 'Onest', sans-serif;
-}
 
-.input-area {
-    background-color: var(--khaki);
-}
-
-.input-area input {
+.chat-input {
+    flex-grow: 1;
     background-color: var(--dun);
     color: var(--black-olive);
+    border-radius: 12px;
+    padding: 0.5rem;
+    border: none;
+    font-family: 'Onest', sans-serif;
 }
 
-.input-area button {
+
+.send-button {
     background-color: var(--dark-moss-green);
     color: white;
+    border-radius: 999px;
+    font-weight: bold;
     font-family: 'Onest', sans-serif;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.send-button:hover {
+    opacity: 0.9;
+}
+
+/* Bolhas de mensagens */
+.v-user-bubble {
+    background-color: var(--khaki);
+    color: var(--black-olive);
+    border-radius: 18px 18px 0 18px;
+    max-width: 60%;
+    padding: 0.75rem 1rem;
+    align-self: flex-end;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+}
+
+.v-ia-bubble {
+    background-color: var(--dark-moss-green);
+    color: var(--dun);
+    border-radius: 18px 18px 18px 0;
+    max-width: 60%;
+    padding: 0.75rem 1rem;
+    align-self: flex-start;
+    box-shadow: 1px 1px 4px rgba(0,0,0,0.2);
+    margin-bottom: 0.5rem;
+    word-break: break-word;
+}
+
+/* Rodapé */
+footer, .footer {
+    text-align: center;
+    font-size: 0.75rem;
+    color: gray;
+    padding: 0.5rem;
 }
