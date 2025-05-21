@@ -107,7 +107,7 @@ vaadin-scroller {
 }
 
 /* Rodapé */
-footer, .footer {
+.footer {
     text-align: center;
     font-size: 0.75rem;
     color: gray;
@@ -157,4 +157,15 @@ footer, .footer {
 .v-ia-bubble em,
 .v-ia-bubble i {
     font-style: italic;
+}
+/* Avatar personalizado */
+vaadin-avatar {
+    --vaadin-avatar-size: 40px;
+    border: 2px solid var(--apple-green);
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    margin: 0 0.5rem;
+}
+
+vaadin-avatar::part(image) {
+    border-radius: 50%;
 }

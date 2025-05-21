@@ -2,7 +2,9 @@ package br.com.senac.ia.views;
 
 import br.com.senac.ia.IaService;
 import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.avatar.Avatar;
 import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.Uses;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
@@ -17,6 +19,7 @@ import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.router.Route;
 
 @Route("")
+@Uses(Avatar.class)
 @CssImport("./styles/chat-theme.css")
 public class HomeView extends VerticalLayout {
 
@@ -32,7 +35,7 @@ public class HomeView extends VerticalLayout {
         setSpacing(false);
         setJustifyContentMode(JustifyContentMode.START);
         setDefaultHorizontalComponentAlignment(FlexComponent.Alignment.STRETCH);
-        addClassName("home-view"); // opcional se quiser estilizar o layout principal
+        addClassName("home-view");
 
         // Header
         Div header = new Div();
@@ -73,6 +76,11 @@ public class HomeView extends VerticalLayout {
         // Rodapé
         Paragraph footer = new Paragraph("© 2024 Acaiacá - Todos os direitos reservados");
         footer.addClassName("footer");
+        footer.getStyle()
+                .set("color", "gray")
+                .set("font-size", "0.75rem")
+                .set("text-align", "center")
+                .set("padding", "0.5rem");
 
         add(header, scroller, inputBar, footer);
         expand(scroller);
@@ -92,12 +100,30 @@ public class HomeView extends VerticalLayout {
     }
 
     private void addChatMessage(String text, boolean isUser) {
+        Avatar avatar = new Avatar(isUser ? "Você" : "IAcai");
+        if (isUser) {
+            avatar.setImage("images/User.jpeg");
+        } else {
+            avatar.setImage("images/IAcai-face.png");
+        }
+
         Div messageBubble = new Div();
-
-        // Usa innerHTML para renderizar Markdown convertido em HTML
         messageBubble.getElement().setProperty("innerHTML", text);
-
         messageBubble.addClassName(isUser ? "v-user-bubble" : "v-ia-bubble");
-        chatLayout.add(messageBubble);
+
+        HorizontalLayout messageLayout = new HorizontalLayout();
+        messageLayout.setWidthFull();
+        messageLayout.setSpacing(true);
+        messageLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+
+        if (isUser) {
+            messageLayout.add(messageBubble, avatar);
+            messageLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.END);
+        } else {
+            messageLayout.add(avatar, messageBubble);
+            messageLayout.setJustifyContentMode(FlexComponent.JustifyContentMode.START);
+        }
+
+        chatLayout.add(messageLayout);
     }
 }
