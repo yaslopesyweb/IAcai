@@ -13,20 +13,34 @@ target/
 .springBeans
 .sts4-cache
 
-<<<<<<< HEAD
 # Arquivos de ambiente
 .env
 .env.local
 .env.*.local
-/node_modules
+*.log
+
+# Frontend Vaadin/Vite
+/node_modules/
 /frontend/generated/
+/vite.generated.ts
+/pnpm-lock.yaml
+
+# Arquivos gerados
+
+
+
+
+# Maven
+/target/
 /src/main/bundles/
-# Não ignorar o arquivo de exemplo
+
+# IDEs
+.idea/
+.vscode/
+
+# Não ignorar o arquivo de exemplo de env
 !.env.example
 
-
-=======
->>>>>>> df8ae17 (Versão Inicial da Iacai, inteligência artificial para Acaiacá)
 ### IntelliJ IDEA ###
 .idea
 *.iws

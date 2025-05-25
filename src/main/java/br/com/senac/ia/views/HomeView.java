@@ -15,7 +15,7 @@ import com.vaadin.flow.component.orderedlayout.Scroller;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
-import com.vaadin.flow.component.textfield.TextArea;
+import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 
 @Route("")
@@ -25,7 +25,7 @@ public class HomeView extends VerticalLayout {
 
     private final IaService iaService;
     private final VerticalLayout chatLayout = new VerticalLayout();
-    private final TextArea textArea = new TextArea();
+    private final TextField textField = new TextField();
 
     public HomeView(IaService iaService) {
         this.iaService = iaService;
@@ -55,10 +55,10 @@ public class HomeView extends VerticalLayout {
         scroller.addClassName("chat-scroller");
 
         // Entrada de texto
-        textArea.setPlaceholder("Digite sua mensagem...");
-        textArea.setWidthFull();
-        textArea.addClassName("chat-input");
-        textArea.addKeyPressListener(Key.ENTER, event -> send());
+        textField.setPlaceholder("Digite sua mensagem...");
+        textField.addClassName("chat-input");
+        textField.addKeyPressListener(Key.ENTER, event -> send());
+
 
         // Botão de envio
         Button sendButton = new Button("Enviar", VaadinIcon.PAPERPLANE.create());
@@ -67,10 +67,10 @@ public class HomeView extends VerticalLayout {
         sendButton.addClickListener(click -> send());
 
         // Barra de entrada
-        HorizontalLayout inputBar = new HorizontalLayout(textArea, sendButton);
+        HorizontalLayout inputBar = new HorizontalLayout(textField, sendButton);
         inputBar.setWidthFull();
         inputBar.setSpacing(true);
-        inputBar.setAlignItems(Alignment.END);
+        inputBar.setAlignItems(Alignment.CENTER);
         inputBar.addClassName("input-bar");
 
         // Rodapé
@@ -90,22 +90,18 @@ public class HomeView extends VerticalLayout {
     }
 
     private void send() {
-        String userMessage = textArea.getValue();
+        String userMessage = textField.getValue();
         if (userMessage == null || userMessage.trim().isEmpty()) return;
 
         addChatMessage(userMessage, true);
         String chatResponse = iaService.sentToAi(userMessage);
         addChatMessage(chatResponse, false);
-        textArea.clear();
+        textField.clear();
     }
 
     private void addChatMessage(String text, boolean isUser) {
         Avatar avatar = new Avatar(isUser ? "Você" : "IAcai");
-        if (isUser) {
-            avatar.setImage("images/User.jpeg");
-        } else {
-            avatar.setImage("images/IAcai-face.png");
-        }
+        avatar.setImage(isUser ? "images/User.jpeg" : "images/IAcai-face.png");
 
         Div messageBubble = new Div();
         messageBubble.getElement().setProperty("innerHTML", text);
@@ -114,7 +110,7 @@ public class HomeView extends VerticalLayout {
         HorizontalLayout messageLayout = new HorizontalLayout();
         messageLayout.setWidthFull();
         messageLayout.setSpacing(true);
-        messageLayout.setAlignItems(FlexComponent.Alignment.CENTER);
+        messageLayout.setAlignItems(Alignment.END);
 
         if (isUser) {
             messageLayout.add(messageBubble, avatar);

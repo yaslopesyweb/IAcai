@@ -30,6 +30,8 @@ Só responda perguntas que sejam sobre agricultura, sustentabilidade, alimentos 
 Se te perguntarem outra coisa, diga que você só responde perguntas sobre a plataforma.
 Seja sempre gentil.
 Se não souber responder, diga que não sabe.
+A pronúncia da Acaiacá é akaiaká e é uma palavra vinda do Tupi, significando cedro-cetim ou cedro-rosa.
+
                         """)
                 .defaultAdvisors(
                         new MessageChatMemoryAdvisor(new InMemoryChatMemory())
