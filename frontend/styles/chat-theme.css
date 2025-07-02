@@ -90,6 +90,22 @@ body {
     box-sizing: border-box;
 }
 
+.send-button {
+    background-color: var(--dark-moss-green);
+    color: white;
+    border-radius: 999px;
+    font-weight: bold;
+    font-family: 'Onest', sans-serif;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
 .input-bar {
     display: flex;
     align-items: center;
@@ -131,11 +147,34 @@ body {
     word-break: break-word;
 }
 
+.ia-listen-button {
+    background-color: var(--dun); /* Bege claro */
+    color: var(--dark-moss-green); /* Verde musgo escuro */
+    border: none;
+    border-radius: 8px;
+    padding: 4px 8px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.ia-listen-button:hover {
+    background-color: var(--apple-green);
+    color: white;
+}
+
+.ia-listen-button vaadin-icon {
+    width: 20px;
+    height: 20px;
+}
+.ia-listen-button[playing="true"] {
+    background-color: var(--apple-green);
+    color: white;
+}
 /* Rodapé */
 .footer {
     text-align: center;
     font-size: 0.75rem;
-    color: gray;
+    color: var(--dun);
     padding: 0.5rem;
 }
 
@@ -228,3 +267,25 @@ vaadin-text-area::part(input-field) {
 vaadin-text-area::part(clear-button) {
     display: none;
 }
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.85);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.loading-overlay img {
+    width: 80px;
+    height: 80px;
+}
+
+.loading-overlay[hidden] {
+    display: none !important;
+}
+
